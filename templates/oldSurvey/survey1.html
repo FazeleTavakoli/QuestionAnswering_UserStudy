@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}
+Survey
+{% endblock %}
+
+{% block content %}
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>Hi, {{ user.username }}!</h1>
+        {% for i in range(2)%}
+{#            {% if user.id  / 3 == 0 %}#}
+
+                <div id="question" style="margin-left: 10px">
+                <h2>Question: {{ question[i].question }}</h2>
+                </div>
+                <div style="margin: 0 10px">
+                </div>
+                <div id="sparql" style="width: 50%; float: right;">
+                    <h5>Interpretation of the input question:</h5>
+                    <div id="sparqlQuery">
+                        <h4>{{ question[i].sparqlQuery }}</h4>
+                    </div>
+                    <hr />
+                    <div id="controlledLanguage">
+                        <div>
+                            <h5>SPARQL</h5>
+                            <div id="controlledLanguage"><pre style='white-space: pre-wrap;'>{{ question[i].controlledLanguage }}</pre></div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <a href="{{ url_for('correct') }}">If this interpretation of the question is correct, please click here</a>
+                    <hr/>
+                </div>
+
+{#            {% print i %}#}
+{#            {% endif %}#}
+        {% endfor %}
+
+    </body>
+</html>
+
+
+{% endblock %}
+
+

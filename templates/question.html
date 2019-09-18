@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Question Answering Survey
+{% endblock %}
+
+{#{% block styles %}#}
+{##}
+{#{% endblock %}#}
+
+
+{% block content %}
+{#    class="top-pad"#}
+  <div id="question" style="margin-left: 10px">
+      <h3><b>Question</b>: {{ single_question.question }}</h3>
+{#      <p style="font-size: 15px;"><b>Answer</b>:{{ single_question.answer }}</p>#}
+  </div>
+
+ <div style="border:3px; border-style:solid; border-color:#000000; padding: 1em; box-sizing: content-box; width: 350px; height: 250px; margin: 30px;">
+ <p style="font-size: 15px;">
+     {% if user.id%3 == 0 %}
+          {{ single_question.controlledLanguage }}
+      {% elif user.id%3 == 1 %}
+          {{ single_question.sparqlQuery }}
+      {% elif user.id%3 == 2 %}
+         <h4> Knowledge Graph</h4>
+         <img src={{ imageFile}} >
+      {% endif %}
+ </p>
+ </div>
+
+  <div style="position: absolute; right: 100px; top: 150px;">
+      <h3> Does the interpretation of the question sound correct to you?</h3>
+      <p style="color:black;"><a href = {{ url_for('correct', key=key) }} > yes? please click here</a></p>
+      <p style="color:black;"><a href = {{ url_for('wrong', key=key) }} > No? please click here</a></p>
+      <h3> You can also skip this question</h3>
+      <select id ="skip_reason">
+          <option value="The question doesn't make sense">I don't understand the question</option>
+          <option value="The interpretation doesn't make sense">I don't understand the answer</option>
+          <option value="other">other</option>
+      </select>
+      <input type="text" style="width: 150px" id="skip_reason_other"/>
+        <button id="skip_button">Skip</button>
+
+{#      <button id="skip_button" type="button" onclick="window.location.href='{{ url_for( 'skip', key=key, reason = reason ) }}';"> Skip </button>#}
+  </div>
+      <button style="margin-left: 50px; background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; display: inline-block;"
+              type="button" onclick="window.location.href='{{ url_for( 'question', key=key ) }}';"> Next Question </button>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+
+<script>
+{#    var e = document.getElementById("skip_reason");#}
+{#    var strUser = e.options[e.selectedIndex].value;#}
+{#    document.getElementById("skip_reason").innerHTML =#}
+{#"The skip_reason is: " + skip_reason;#}
+    click_handler = function () {
+    };
+
+    $(function () {
+        var $skip_reason_other = $('#skip_reason_other'),
+            $skip_reason = $('#skip_reason');
+        $skip_reason_other.hide();
+        $skip_reason.change(function () {
+            if ($skip_reason.val() == 'other')
+                $skip_reason_other.show();
+            else
+                $skip_reason_other.hide();
+        })
+        $('#skip_button').click(function () {
+            if ($skip_reason.val() == '') {
+                alert('Please select the reason');
+                return false;
+            } else if (($skip_reason.val() == 'other') && ($skip_reason_other.val() == '')) {
+                alert('Please fill the reason');
+                return false;
+            }
+            var reason = $skip_reason.val();
+            if (reason == 'other')
+                reason = $skip_reason_other.val()
+            window.location.href = "{{ url_for('skip', key=key) }}?reason=" + reason;
+        });
+    });
+</script>
+{%- endblock scripts %}
+

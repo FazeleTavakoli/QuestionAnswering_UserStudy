@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Star the survey
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Welcome {{ current_user.username }}</h3>
+    This survey is designed to study if the question-answering system could have understood the user's question or not. <br/>
+    Please click the below button to start the survey.
+    <hr/>
+{#    <a href="{{ url_for('survey' , key = 0) }}"></a>#}
+    <button type="button" onclick="window.location.href='{{ url_for( 'question' , key = 0 ) }}';"> Start Survey </button>
+</div> <!-- /container -->
+{{ super() }}
+{% endblock %}

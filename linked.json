@@ -1,0 +1,60 @@
+[
+  {
+		"question": "Who are the employees of Food and Drug Administration?",
+		"sparql_dbpedia18": "select distinct ?answer where { ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q204711> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P1128> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?answer. }",
+	  	"answer": "14,824"
+	},
+	{
+		"question": "Who is the developer of Free Software Foundation?",
+		"sparql_dbpedia18": "select distinct ?answer where { ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject>  ?answer. ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P178> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q48413>. }",
+		"answer": "GNU Assembler"
+	},
+	{
+		"question": "Who is the translator of The Jungle Book?",
+		"sparql_dbpedia18": "select distinct ?obj where { ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q189509> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P655> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?obj . ?obj <http://www.wikidata.org/entity/P31> <http://wikidata.dbpedia.org/resource/Q5> } ",
+		"sparql_wikidata": " select distinct ?obj where { wd:Q189509 wdt:P655 ?obj . ?obj wdt:P31 wd:Q5 } ",
+		"answer": "Wen Meihui"
+	},
+	{
+		"question": "How many episodes are in the television series Friends?",
+		"sparql_dbpedia18": "select distinct ?subj where { ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> ?subj . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P179> . ?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q79784> . ?subj <http://www.wikidata.org/entity/P31> <http://wikidata.dbpedia.org/resource/Q21191270> } ",
+		"sparql_wikidata": " select distinct ?sbj where { ?sbj wdt:P179 wd:Q79784 . ?sbj wdt:P31 wd:Q21191270 } ",
+		"answer": "236"
+	},
+	{
+		"question": "Who are the writers of The Second Coming, whose deathplace is Menton?",
+		"sparql_dbpedia18": "SELECT ?answer WHERE { ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q1754273> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P50>. ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?answer . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> ?answer. ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P20> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q180083> . }",
+		"sparql_wikidata": "SELECT ?answer WHERE { wd:Q1754273 wdt:P50 ?answer . ?answer wdt:P20 wd:Q180083}",
+		"answer": "WILLIAM BUTLER YEATS"
+	},
+	{
+		"question": "What land are alumni of Francis from?",
+		"sparql_dbpedia18": "SELECT ?answer WHERE { ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q450675> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P69>. ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?X . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> ?X. ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P17> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?answer . }",
+		"sparql_wikidata": "SELECT ?answer WHERE { wd:Q450675 wdt:P69 ?X . ?X wdt:P17 ?answer}",
+		"answer": "Argentina"
+	},
+	{
+		"question": "What was William Butler Yeats nominated for in the year 1918?",
+		"sparql_dbpedia18": "select distinct ?obj  where {\n?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q40213> .\n?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P1411> .\n?statement <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?obj .\n?statement <http://www.wikidata.org/entity/P585> <1918-1-1>\n} \n",
+		"sparql_wikidata": "SELECT ?obj WHERE { wd:Q40213 p:P1411 ?s . ?s ps:P1411 ?obj . ?s pq:P585 ?x filter(contains(?x,'1918-1-1')) }",
+		"answer": "Nobel prize"
+	},
+	{
+		"question": "Who is the film editor and director of Reservoir Dogs?",
+		"sparql_dbpedia18": " SELECT ?ans_1 ?ans_2 WHERE { ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q72962> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P1040> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?ans_1. ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q72962> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P57> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> ?ans_2. } ",
+		"sparql_wikidata": "SELECT ?ans_1 ?ans_2 WHERE { wd:Q72962 wdt:P1040 ?ans_1 . wd:Q72962 wdt:P57 ?ans_2 }",
+		"answer": "Sally Menke"
+	},
+	{
+		"question": "Is Juan Jos\u00e9 Ibarretxe a chairperson of FC Barcelona?",
+		"sparql_dbpedia18": " ASK { ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q7156> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P488> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q351738>. } ",
+		"sparql_wikidata": "ASK WHERE { wd:Q7156 wdt:P488 wd:Q351738 }",
+		"answer": "No"
+	},
+	{
+		"question": "Were Dutch and Hungarian the official languages of the Holy Roman Empire?",
+		"sparql_dbpedia18": " ASK { ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q12548> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P37> . ?statement1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q7411>. ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://wikidata.dbpedia.org/resource/Q12548> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.wikidata.org/entity/P37> . ?statement2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://wikidata.dbpedia.org/resource/Q9067>. } ",
+		"sparql_wikidata": "ASK WHERE { wd:Q12548 wdt:P37 wd:Q7411 . wd:Q12548 wdt:P37 wd:Q9067 }",
+		"answer": "Yes"
+	}
+]

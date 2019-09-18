@@ -1,0 +1,72 @@
+{#{% extends "layout.html" %}#}
+{#{% block title %}#}
+{#Survey#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<html>#}
+{#    <head>#}
+{#        <title>{{ title }}</title>#}
+{#    </head>#}
+{#    <body>#}
+{#        <h1>Hi, {{ user.username }}!</h1>#}
+{#                <div id="question" style="margin-left: 10px">#}
+{#                <h2>Question: {{ question.question }}</h2>#}
+{#                </div>#}
+{#                <div style="margin: 0 10px">#}
+{#                </div>#}
+{#                <div id="sparql" style="width: 50%; float: right;">#}
+{#                    <h5>Interpretation of the input question:</h5>#}
+{#                    <div id="sparqlQuery">#}
+{#                        <h4>{{ question.sparqlQuery }}</h4>#}
+{#                    </div>#}
+{#                    <hr />#}
+{#                    <div id="controlledLanguage">#}
+{#                        <div>#}
+{#                            <h5>SPARQL</h5>#}
+{#                            <div id="controlledLanguage"><pre style='white-space: pre-wrap;'>{{ question.controlledLanguage }}</pre></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <hr/>#}
+{#                    <a href="{{ url_for('correct') }}">If this interpretation of the question is correct, please click here</a>#}
+{#                    <hr/>#}
+{#                </div>#}
+{#        <button type="button" id="myBtn" onclick="myFunction()">Try it</button>#}
+{#        <button type="button" onclick="window.location.href='{{ url_for( 'survey' ) }}';">Display Table Y</button>#}
+{#        <a href="{{ url_for('correct') }}">If this interpretation of the question is correct, please click here</a>#}
+{#        <button type="button" onclick="window.location.href='{{ url_for( 'survey' ) }}';">Next</button>#}
+{##}
+{#    </body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+{% extends "layout.html" %}
+{% block content %}
+  <div class="top-pad">
+{#    {% for i in range(2) %}#}
+      <div class="well">
+        <h2>
+{#            {% if int(user.id)  / 3 == 0 %}#}
+{##}
+{#            {% endif %}#}
+
+{#          <a href="{{ url_for('question', key= i) }}">{{ questions[i].question }}</a>#}
+{#          <small>$ {{ questions[i].answer }}</small>#}
+
+
+            <button type="button" onclick="window.location.href='{{ url_for( 'question' , key=key ) }}';"> Start Survey </button>
+{#            <button type="button" id="myBtn" onclick="myFunction()">Try it</button>#}
+        </h2>
+      </div>
+{#    {% endfor %}#}
+  </div>
+{% endblock %}
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myBtn");
+  x.disabled = true;
+
+}
+</script>
