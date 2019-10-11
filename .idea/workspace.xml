@@ -11,7 +11,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/QA_userStrudy$DBModels.coverage" NAME="DBModels Coverage Results" MODIFIED="1564684954293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
     <SUITE FILE_PATH="coverage/QA_userStrudy$QA_userStrudy.coverage" NAME="QA_userStrudy Coverage Results" MODIFIED="1563753227801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/QA_userStrudy$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1568490638386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/QA_userStrudy$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1570757466097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/QA_userStrudy$app.coverage" NAME="app Coverage Results" MODIFIED="1564572545073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/QA_userStrudy$DBModel_2.coverage" NAME="DBModel_2 Coverage Results" MODIFIED="1563799595463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
   </component>
@@ -19,16 +19,17 @@
     <session id="1246863816">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.36" value="1" />
-          <entry key="project.open.time.39" value="1" />
+          <entry key="project.open.time.39" value="2" />
+          <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.5" value="1" />
@@ -36,45 +37,45 @@
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.68" value="1" />
           <entry key="project.open.time.75" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
           <entry key="db" value="10" />
-          <entry key="html" value="38" />
+          <entry key="html" value="51" />
           <entry key="json" value="6" />
-          <entry key="png" value="10" />
-          <entry key="py" value="64" />
-          <entry key="txt" value="3" />
+          <entry key="png" value="11" />
+          <entry key="py" value="72" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="38" />
-          <entry key="Image" value="10" />
+          <entry key="HTML" value="51" />
+          <entry key="Image" value="11" />
           <entry key="JSON" value="6" />
-          <entry key="PLAIN_TEXT" value="13" />
-          <entry key="Python" value="64" />
+          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="Python" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="3" />
           <entry key="css" value="3" />
-          <entry key="html" value="2389" />
+          <entry key="html" value="2817" />
           <entry key="json" value="188" />
-          <entry key="py" value="4444" />
+          <entry key="py" value="4903" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="2389" />
+          <entry key="HTML" value="2817" />
           <entry key="JSON" value="188" />
-          <entry key="Python" value="4447" />
+          <entry key="Python" value="4906" />
         </counts>
       </usages-collector>
     </session>
@@ -84,68 +85,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="80">
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
               <folding>
-                <marker date="1568296553000" expanded="true" signature="7572:7574" ph="..." />
+                <element signature="e#0#12#0" expanded="true" />
+                <marker date="1570753719000" expanded="true" signature="3346:3347" ph="..." />
+                <marker date="1570753719000" expanded="true" signature="8331:8333" ph="..." />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="91" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/kg_1.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/question.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+            <state relative-caret-position="56">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/DBModels.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/d3_Visualization.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-                <marker date="1568296061000" expanded="true" signature="2621:3286" ph="..." />
-              </folding>
+            <state relative-caret-position="172">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -163,12 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sign</find>
-      <find>User</find>
-      <find>form</find>
-      <find>model</find>
-      <find>load_user</find>
-      <find>redi</find>
       <find>script</find>
       <find>progressbar</find>
       <find>h</find>
@@ -193,6 +159,12 @@
       <find>title</find>
       <find>interaction</find>
       <find>answer</find>
+      <find>href</find>
+      <find>question</find>
+      <find>forc</find>
+      <find>result</find>
+      <find>d3</find>
+      <find>quer</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -212,11 +184,12 @@
         <option value="$PROJECT_DIR$/templates/oldSurvey/baseSurvey.html" />
         <option value="$PROJECT_DIR$/templates/survey.html" />
         <option value="$PROJECT_DIR$/templates/layout.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/main.css" />
         <option value="$PROJECT_DIR$/database/DBModels.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/question.html" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/d3_Visualization.html" />
       </list>
     </option>
   </component>
@@ -225,6 +198,11 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/d3-master/package.json" />
+    </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -423,20 +401,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="709" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5008104" side_tool="true" weight="0.21001616" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49918962" visible="true" weight="0.23909532" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49918962" visible="true" weight="0.25121164" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49919224" weight="0.3273906" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50080776" side_tool="true" weight="0.329582" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" order="4" weight="0.329582" />
+      <window_info anchor="bottom" id="Python Console" order="4" weight="0.32901135" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32901135" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.3241491" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.3241491" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.39384118" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -470,38 +447,34 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app.py</url>
-          <line>197</line>
-          <option name="timeStamp" value="122" />
+          <line>101</line>
+          <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app.py</url>
-          <line>196</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>199</line>
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>200</line>
-          <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>202</line>
-          <option name="timeStamp" value="127" />
+          <line>126</line>
+          <option name="timeStamp" value="139" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/templates/question.html</url>
-          <line>59</line>
+          <line>60</line>
           <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/templates/d3_Visualization.html</url>
+          <line>41</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="jinja2-line">
           <url>file://$PROJECT_DIR$/templates/question.html</url>
           <line>26</line>
           <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="jinja2-line">
+          <url>file://$PROJECT_DIR$/templates/d3_Visualization.html</url>
+          <line>300</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -540,6 +513,7 @@
         <watch expression="query" />
         <watch expression="jsonResponse['interpretation']" />
         <watch expression="return redirect('question',key)" />
+        <watch expression="d3_Visualization(sparql_query=query)" />
       </configuration>
     </watches-manager>
   </component>
@@ -642,13 +616,6 @@
     <entry file="file://$USER_HOME$/Downloads/QA_userStrudy/QA_userStrudy/database/DBModels.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/forms/registerForm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/DBModel_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -680,16 +647,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kg_1.png" />
-    <entry file="file://$PROJECT_DIR$/static/kg_2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="465" selection-start-line="465" selection-end-line="465" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask/cli.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -714,16 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/forms/loginForm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask_login/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -738,24 +685,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="2214" selection-start-line="2214" selection-end-line="2214" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/werkzeug/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-763">
           <caret line="468" column="4" selection-start-line="468" selection-start-column="4" selection-end-line="468" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -766,18 +699,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/answers.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/college.db">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/survey.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/QA2.db">
       <provider selected="true" editor-type-id="text-editor">
@@ -785,6 +708,20 @@
           <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/college.db" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/requests/adapters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="515" selection-start-line="515" selection-end-line="515" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/requests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/database/DBModels.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -800,47 +737,106 @@
     <entry file="file://$PROJECT_DIR$/static/kg_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/static/kg_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/answers.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forms/loginForm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="91" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="91" />
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forms/registerForm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="110" selection-start-line="7" selection-start-column="110" selection-end-line="7" selection-end-column="110" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        <state relative-caret-position="150">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/question.html">
+    <entry file="file://$PROJECT_DIR$/templates/survey.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state relative-caret-position="119">
+          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/socketserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="465" selection-start-line="465" selection-end-line="465" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="1948" selection-start-line="1948" selection-end-line="1948" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        <state relative-caret-position="142">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/college.db">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        <state relative-caret-position="80">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
           <folding>
-            <marker date="1568296553000" expanded="true" signature="7572:7574" ph="..." />
+            <element signature="e#0#12#0" expanded="true" />
+            <marker date="1570753719000" expanded="true" signature="3346:3347" ph="..." />
+            <marker date="1570753719000" expanded="true" signature="8331:8333" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/d3_Visualization.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
     </entry>

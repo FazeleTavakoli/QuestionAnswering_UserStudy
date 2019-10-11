@@ -96,8 +96,10 @@ def signup():
 #
 #     # return render_template('survey.html', title='Survey', user = current_user, question = question, user_id = current_user.id)
 
-
-
+@app.route('/d3_Visualization')
+def d3_Visualization(sparql_query = ''):
+    # sparql_query = sparql_query
+    return render_template('d3_Visualization.html', sparql_query=sparql_query)
 
 @app.route('/survey/<key>')
 @login_required
@@ -120,6 +122,8 @@ def question(key):
     key = int(key) + 1
     fileName = "kg_" + str(key) + ".png"
     imageFile = url_for('static', filename = fileName)
+    a = single_question.sparqlQuery
+    d3_Visualization(sparql_query = a)
     return render_template('question.html', single_question = single_question, key = key, user=current_user, imageFile = imageFile)
 
 @app.route('/correct/<key>')
@@ -179,24 +183,30 @@ def readFile(address):
 #producing questions table in database
 def readJsonFile():
     questionCounter = 0
-    address = "/Users/fazeletavakoli/PycharmProjects/QA_userStrudy/lcquad_2_0.json"
+    address_lcquad_1 = "/Users/fazeletavakoli/PycharmProjects/QA_userStrudy/LC-QuAD-train.json"
+    address_lcquad_2 = "/Users/fazeletavakoli/PycharmProjects/QA_userStrudy/lcquad_2_0.json"
     questionList = readFile("/Users/fazeletavakoli/PycharmProjects/QA_userStrudy/sparqlToUser.txt")
     answerList = readFile("/Users/fazeletavakoli/PycharmProjects/QA_userStrudy/answers.txt")
 
-    with open(address, 'r') as jsonFile:
+    with open(address_lcquad_1, 'r') as jsonFile:
         dictionary = json.load(jsonFile)
     for entity in dictionary:
          if questionCounter != 3:
             questionId = questionCounter
-            question = entity['paraphrased_question']
+            # question = entity['paraphrased_question']
+            question = entity['corrected_question']
             # answer = answerList[questionCounter]
-            query = entity["sparql_dbpedia18"]
+            # query = entity["sparql_dbpedia18"]
+            query = entity["sparql_query"]
             ### using 'SparqltoUser' webservice for getting interpretation of sparql query ###
             # query = "SELECT DISTINCT ?x WHERE {<http://www.wikidata.org/entity/Q20034> <http://www.wikidata.org/prop/direct/P527> ?x . } limit 1000"
             language = "en"
-            knowledgeBase = "dbpedia"  # it doesn't work with "wikidata". weird!
-            response = requests.get('https://qanswer-sparqltouser.univ-st-etienne.fr/sparqltouser',
-                                    params={'sparql':query, 'lang':language,'kb':knowledgeBase})  # this command also works without setting 'lang' and 'kb'
+            # knowledgeBase = "wikidata"  # it doesn't work with "wikidata" when api is used not my local host.
+            knowledgeBase = "dbpedia"
+            # response = requests.get('https://qanswer-sparqltouser.univ-st-etienne.fr/sparqltouser',
+            #                         params={'sparql':query, 'lang':language,'kb':knowledgeBase})  # this command also works without setting 'lang' and 'kb'
+            response = requests.get('http://localhost:1920/sparqltouser',
+                                    params={'sparql': query, 'lang': language, 'kb': knowledgeBase})
             jsonResponse = response.json()
             controlledLanguage = jsonResponse['interpretation']
             # controlledLanguage = questionList[questionCounter]
@@ -204,6 +214,8 @@ def readJsonFile():
             new_question = Question(question = question, sparqlQuery= query, controlledLanguage= controlledLanguage)  # the argument "answer = answer" has been omitted
             db.session.add(new_question)
             db.session.commit()
+            # d3_Visualization(query)
+
 
 
 

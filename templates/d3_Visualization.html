@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+{#{% print %}#}
+ <head>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="d3sparql.js"></script>
+  <script>
+
+      var d3sparql = {
+          version: "d3sparql.js version 2018-05-04",
+          debug: false  // set to true for showing debug information
+      }
+
+      d3sparql.fetch = function(url, callback) {
+          if (d3sparql.debug) {
+              console.log(url)
+          }
+          var mime = "application/sparql-results+json"
+          d3.xhr(url, mime, function (request) {
+              var json = request.responseText
+              if (d3sparql.debug) {
+                  console.log(json)
+              }
+              callback(JSON.parse(json))
+          })
+      }
+
+      d3sparql.query = function(endpoint, sparql, callback) {
+          var url = endpoint + "?query=" + encodeURIComponent(sparql)
+          if (d3sparql.debug) {
+              console.log(endpoint)
+          }
+          d3sparql.fetch(url, callback)
+      }
+
+      function exec() {
+          /* Uncomment to see debug information in console */
+          d3sparql.debug = true
+          var endpoint = d3sparql.select("#endpoint").property("value")
+          var sparql = d3sparql.select("#sparql").property("value")
+          d3sparql.query(endpoint, sparql, render)
+      }
+
+      d3sparql.forcegraph = function(json, config) {
+          config = config || {}
+
+          var graph = (json.head && json.results) ? d3sparql.graph(json, config) : json
+
+          var scale = d3.scale.linear()
+              .domain(d3.extent(graph.nodes, function (d) {
+                  return parseFloat(d.value)
+              }))
+              .range([1, 20])
+
+          var opts = {
+              "radius": config.radius || function (d) {
+                  return d.value ? scale(d.value) : 1 + d.label.length
+              },
+              "charge": config.charge || -500,
+              "distance": config.distance || 50,
+              "width": config.width || 1000,
+              "height": config.height || 750,
+              "label": config.label || false,
+              "selector": config.selector || null
+          }
+
+          var svg = d3sparql.select(opts.selector, "forcegraph").append("svg")
+              .attr("width", opts.width)
+              .attr("height", opts.height)
+          var link = svg.selectAll(".link")
+              .data(graph.links)
+              .enter()
+              .append("line")
+              .attr("class", "link")
+          var node = svg.selectAll(".node")
+              .data(graph.nodes)
+              .enter()
+              .append("g")
+          var circle = node.append("circle")
+              .attr("class", "node")
+              .attr("r", opts.radius)
+          var text = node.append("text")
+              .text(function (d) {
+                  return d[opts.label || "label"]
+              })
+              .attr("class", "node")
+          var force = d3.layout.force()
+              .charge(opts.charge)
+              .linkDistance(opts.distance)
+              .size([opts.width, opts.height])
+              .nodes(graph.nodes)
+              .links(graph.links)
+              .start()
+          force.on("tick", function () {
+              link.attr("x1", function (d) {
+                  return d.source.x
+              })
+                  .attr("y1", function (d) {
+                      return d.source.y
+                  })
+                  .attr("x2", function (d) {
+                      return d.target.x
+                  })
+                  .attr("y2", function (d) {
+                      return d.target.y
+                  })
+              text.attr("x", function (d) {
+                  return d.x
+              })
+                  .attr("y", function (d) {
+                      return d.y
+                  })
+              circle.attr("cx", function (d) {
+                  return d.x
+              })
+                  .attr("cy", function (d) {
+                      return d.y
+                  })
+          })
+          node.call(force.drag)
+
+          // default CSS/SVG
+          link.attr({
+              "stroke": "#999999",
+          })
+          circle.attr({
+              "stroke": "black",
+              "stroke-width": "1px",
+              "fill": "lightblue",
+              "opacity": 1,
+          })
+          text.attr({
+              "font-size": "8px",
+              "font-family": "sans-serif",
+          })
+      }
+
+
+
+
+      d3sparql.sankey = function(json, config) {
+          config = config || {}
+
+          var graph = (json.head && json.results) ? d3sparql.graph(json, config) : json
+
+          var opts = {
+              "width": config.width || 750,
+              "height": config.height || 1200,
+              "margin": config.margin || 10,
+              "selector": config.selector || null
+          }
+
+          var nodes = graph.nodes
+          var links = graph.links
+          for (var i = 0; i < links.length; i++) {
+              links[i].value = 2  // TODO: fix to use values on links
+          }
+          var sankey = d3.sankey()
+              .size([opts.width, opts.height])
+              .nodeWidth(15)
+              .nodePadding(10)
+              .nodes(nodes)
+              .links(links)
+              .layout(32)
+          var path = sankey.link()
+          var color = d3.scale.category20()
+          var svg = d3sparql.select(opts.selector, "sankey").append("svg")
+              .attr("width", opts.width + opts.margin * 2)
+              .attr("height", opts.height + opts.margin * 2)
+              .append("g")
+              .attr("transform", "translate(" + opts.margin + "," + opts.margin + ")")
+          var link = svg.selectAll(".link")
+              .data(links)
+              .enter()
+              .append("path")
+              .attr("class", "link")
+              .attr("d", path)
+              .attr("stroke-width", function (d) {
+                  return Math.max(1, d.dy)
+              })
+              .sort(function (a, b) {
+                  return b.dy - a.dy
+              })
+          var node = svg.selectAll(".node")
+              .data(nodes)
+              .enter()
+              .append("g")
+              .attr("class", "node")
+              .attr("transform", function (d) {
+                  return "translate(" + d.x + "," + d.y + ")"
+              })
+              .call(d3.behavior.drag()
+                  .origin(function (d) {
+                      return d
+                  })
+                  .on("dragstart", function () {
+                      this.parentNode.appendChild(this)
+                  })
+                  .on("drag", dragmove)
+              )
+          node.append("rect")
+              .attr("width", function (d) {
+                  return d.dx
+              })
+              .attr("height", function (d) {
+                  return d.dy
+              })
+              .attr("fill", function (d) {
+                  return color(d.label)
+              })
+              .attr("opacity", 0.5)
+          node.append("text")
+              .attr("x", -6)
+              .attr("y", function (d) {
+                  return d.dy / 2
+              })
+              .attr("dy", ".35em")
+              .attr("text-anchor", "end")
+              .attr("transform", null)
+              .text(function (d) {
+                  return d.label
+              })
+              .filter(function (d) {
+                  return d.x < opts.width / 2
+              })
+              .attr("x", 6 + sankey.nodeWidth())
+              .attr("text-anchor", "start")
+
+          // default CSS/SVG
+          link.attr({
+              "fill": "none",
+              "stroke": "grey",
+              "opacity": 0.5,
+          })
+
+          function dragmove(d) {
+              d3.select(this).attr("transform", "translate(" + d.x + "," + (d.y = Math.max(0, Math.min(opts.height - d.dy, d3.event.y))) + ")")
+              sankey.relayout()
+              link.attr("d", path)
+          }
+      }
+
+
+
+
+
+  function render(json) {
+      /* set options and call the d3spraql.xxxxx function in this library ... */
+      var config = {
+          "selector": "#result"
+      }
+
+      d3sparql.forcegraph(json, config)
+      d3sparql.sankey(json, config)
+      {#d3sparql.xxxxx(json, config)#}
+  }
+  </script>
+  <style>
+  <!-- customize CSS -->
+  </style>
+ </head>
+ <body onload="exec()">
+ <form>
+{#  <form style="display:none">#}
+   <input id="endpoint" value="http://dbpedia.org/sparql" type="text">
+   <textarea id="sparql">
+{#       select distinct ?Concept where {[] a ?Concept} LIMIT 100#}
+{#    PREFIX ...#}
+    # https://en.wikipedia.org/wiki/History_of_programming_languages
+# https://en.wikipedia.org/wiki/Perl
+# http://dbpedia.org/page/Perl
+# http://dbpedia.org/sparql
+PREFIX xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+PREFIX xmlns:rdf= "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+PREFIX xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+PREFIX xmlns:dbpedia-owl= "http://dbpedia.org/ontology/"
+PREFIX xmlns:dbpprop= "http://dbpedia.org/property/"
+PREFIX xmlns:dbpedia= "http://dbpedia.org/resource/"
+
+SELECT DISTINCT ?lang1 ?lang2 ?lang1label ?lang2label ?lang1value ?lang2value ?lang1year ?lang2year
+WHERE {
+  ?lang1 rdf:type dbpedia-owl:ProgrammingLanguage ;
+         rdfs:label ?lang1name ;
+         dbpprop:year ?lang1year .
+  ?lang2 rdf:type dbpedia-owl:ProgrammingLanguage ;
+         rdfs:label ?lang2name ;
+         dbpprop:year ?lang2year .
+  ?lang1 dbpedia-owl:influenced ?lang2 .
+  FILTER (?lang1 != ?lang2)
+  FILTER (LANG(?lang1name) = 'en')
+  FILTER (LANG(?lang2name) = 'en')
+  BIND (replace(?lang1name, " .programming language.", "") AS ?lang1label)
+  BIND (replace(?lang2name, " .programming language.", "") AS ?lang2label)
+  FILTER (?lang1year > 1950 AND ?lang1year < 2020)
+  FILTER (?lang2year > 1950 AND ?lang2year < 2020)
+  # To render older language larger than newer
+  BIND ((2020 - ?lang1year) AS ?lang1value)
+  BIND ((2020 - ?lang2year) AS ?lang2value)
+}
+{#       {{ sparql_query }}#}
+   </textarea>
+  </form>
+  <div id="result"></div>
+ </body>
+</html>
