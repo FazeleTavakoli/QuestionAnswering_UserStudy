@@ -13,6 +13,8 @@ import urllib.request
 import urllib.parse
 import requests
 import datetime
+import pandas as pd
+import re
 
 app = Flask(__name__)
 
@@ -96,10 +98,18 @@ def signup():
 #
 #     # return render_template('survey.html', title='Survey', user = current_user, question = question, user_id = current_user.id)
 
-@app.route('/d3_Visualization')
-def d3_Visualization(sparql_query = ''):
+# @app.route('/d3_Visualization/<key>')
+# def d3_Visualization(key):
+#     # sparql_query = sparql_query
+#     list = session['triple']
+#     return render_template('d3.html', list = list, key = key)
+
+@app.route('/d3_Visualization/<key>')
+def d3_Visualization(key):
     # sparql_query = sparql_query
-    return render_template('d3_Visualization.html', sparql_query=sparql_query)
+    nodes_links = session['triple']
+    return render_template('d3_labeled_edges_2.html', nodes_links = nodes_links, key = key)
+
 
 @app.route('/survey/<key>')
 @login_required
@@ -122,15 +132,16 @@ def question(key):
     key = int(key) + 1
     fileName = "kg_" + str(key) + ".png"
     imageFile = url_for('static', filename = fileName)
-    a = single_question.sparqlQuery
-    d3_Visualization(sparql_query = a)
-    return render_template('question.html', single_question = single_question, key = key, user=current_user, imageFile = imageFile)
+    # a = single_question.sparqlQuery
+    single_question_SQ = single_question.sparqlQuery
+    nodes_links = detect_regularExpression(single_question_SQ)
+    session['triple'] = nodes_links
+    return render_template('question.html', single_question = single_question, key = key, user=current_user, imageFile = imageFile, nodes_links = nodes_links )
 
 @app.route('/correct/<key>')
 @login_required
 def correct(key):
     save_user_answers(user_answer='yes')
-
     return redirect(url_for('question', key = key))
 
 @app.route('/wrong/<key>')
@@ -191,13 +202,15 @@ def readJsonFile():
     with open(address_lcquad_1, 'r') as jsonFile:
         dictionary = json.load(jsonFile)
     for entity in dictionary:
-         if questionCounter != 3:
+         if questionCounter != 10:
             questionId = questionCounter
             # question = entity['paraphrased_question']
             question = entity['corrected_question']
             # answer = answerList[questionCounter]
             # query = entity["sparql_dbpedia18"]
             query = entity["sparql_query"]
+            # normalizedQuestion = entity['NNQT_question']
+            normalizedQuestion = entity["intermediary_question"]
             ### using 'SparqltoUser' webservice for getting interpretation of sparql query ###
             # query = "SELECT DISTINCT ?x WHERE {<http://www.wikidata.org/entity/Q20034> <http://www.wikidata.org/prop/direct/P527> ?x . } limit 1000"
             language = "en"
@@ -211,13 +224,60 @@ def readJsonFile():
             controlledLanguage = jsonResponse['interpretation']
             # controlledLanguage = questionList[questionCounter]
             questionCounter = questionCounter + 1
-            new_question = Question(question = question, sparqlQuery= query, controlledLanguage= controlledLanguage)  # the argument "answer = answer" has been omitted
+            new_question = Question(question = question, sparqlQuery= query, controlledLanguage= controlledLanguage, normalizedQuestion = normalizedQuestion)  # the argument "answer = answer" has been omitted
             db.session.add(new_question)
             db.session.commit()
+        
             # d3_Visualization(query)
 
+# def detect_regularExpression(inputString):
+#     match_list = []
+#     # pattern = re.compile(r'\{[A-Za-z0-9 -_]+\}') #lcquad_2
+#     pattern = re.compile(r'(\?(uri))|(\?(x))|(resource/[^<>]+>)|(property/[^<>]+>)|(ontology/[^<>]+>)') #lcquad_1
+#     matches = pattern.finditer(inputString)
+#     match_counter = 0
+#     for match in matches:
+#         print(match)
+#         if (match_counter != 0):
+#             match_list.append(match.group(0))
+#         match_counter = match_counter + 1
+#
+#     x = re.search(pattern, inputString) #lcquad1
+#     if (x):
+#         print("YES! We have a match!")
+#     else:
+#         print("No match")
+#     return match_list
 
-
+def detect_regularExpression(inputString):
+    lines = re.split('\s\.|\.\s', inputString)
+    # lines = inputString.split(". ")
+    pattern = re.compile(r'(\?(uri))|(\?(x))|(resource/[^<>]+>)|(property/[^<>]+>)|(ontology/[^<>]+>|(\#type))')  # lcquad_1
+    nodes = [] #all entities u=including nodes and edges
+    links = []
+    # final_nodes = [] #just entities which are nodes
+    nodes_and_links = []
+    match_counter = 0
+    for line in lines:
+        matches = pattern.finditer(line)
+        current_nodes = []
+        current_links = []
+        for match in matches:
+            if match_counter != 0:
+                title = match.group(0)
+                title = title.replace(">","")
+                current_nodes.append(title)
+                if title not in nodes and current_nodes.index(title) != 1:
+                # if title not in nodes and not(('ontology/' in title and current_nodes.index(title) == 1)  or
+                #                               ('property/' in title or current_nodes.index(title) == 1) or
+                #                               '#type' in title):
+                    nodes.append(title)
+            match_counter = match_counter + 1
+        links.append([nodes.index(current_nodes[0]), current_nodes[1], nodes.index(current_nodes[2])])
+        # final_nodes.append(current_nodes)
+    nodes_and_links.append(nodes)
+    nodes_and_links.append(links)
+    return nodes_and_links
 
 
 if __name__ == '__main__':

@@ -50,13 +50,15 @@ class Question(Base):
     # answer = Column(String(64))   //I omitted this entry from Question table in DB, for now
     sparqlQuery = Column(String(300))
     controlledLanguage = Column(String(128))   #sparqltoUser
+    normalizedQuestion = Column(String(256))
     # answeredQuestions = relationship('AnsweredQuestion', backref='askedQuestion', lazy='dynamic')
 
-    def __init__(self, question, sparqlQuery, controlledLanguage):
+    def __init__(self, question, sparqlQuery, controlledLanguage, normalizedQuestion):
         self.question = question
         # self.answer = answer
         self.sparqlQuery = sparqlQuery
         self.controlledLanguage = controlledLanguage
+        self.normalizedQuestion = normalizedQuestion
 
 # class AnsweredQuestion(Base):
 #     __tablename__ = "answeredQuestions"

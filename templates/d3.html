@@ -1,0 +1,211 @@
+{#http://bl.ocks.org/jose187/4733747#}
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
+<button style="margin-left: 50px; background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; display: inline-block;"
+              type="button" onclick="window.location.href='{{ url_for( 'question', key=key ) }}';"> Next Question </button>
+<style>
+
+.link {
+  stroke: #aaa;
+}
+
+.node text {
+stroke:#333;
+cursos:pointer;
+}
+
+.node circle{
+stroke:#fff;
+stroke-width:3px;
+fill:#555;
+}
+
+</style>
+<body>
+
+
+<p id="demo"></p>
+<script>
+var width = 960,
+    height = 500
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+    .gravity(.05)
+    .distance(100)
+    .charge(-100)
+    .size([width, height]);
+
+//d3.json("graphFile.json", function(json) {
+{#console.log({{ nodes_links}});#}
+
+
+var js_array = ['{{ nodes_links[0]}}','{{ nodes_links[1] }}']
+{#document.getElementById("demo").innerHTML = '{{ nodes_links[0] }}';#}
+json = {"nodes":[], "links":[]}
+{%for i in range(0, nodes_links[0]|length)%}
+    json["nodes"].push({"name":"{{ nodes_links[0][i] }}", "group": 1})
+    document.getElementById("demo").innerHTML = json["nodes"];
+    document.getElementById("demo").innerHTML = '{{ nodes_links[1]|length }}'
+{% endfor %}
+{% for j in range(0, nodes_links[1]|length) %}
+{#    {% for j in range(0, (nodes_links[1][i]|length) ) %}#}
+        json["links"].push({"source": {{ nodes_links[1][j][0] }}, "target": {{ nodes_links[1][j][2] }}, "weight": 1})
+{#    {% endfor %}#}
+{% endfor %}
+
+
+
+
+{#json["nodes"].append(list[i])#}
+{#for(i=0;i<list.length;i++){#}
+{#    json["nodes"].append(list[i])#}
+
+
+{#{% if list|length == 3 %}
+    json={
+        "nodes":[
+            {"name": "{{ list[0] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[1] }}", "group": 1},
+            //{"name":"dbp:race","group":1},
+            {"name": "{{ list[2] }}", "group": 1},
+        ],
+        "links": [
+            {"source": 0, "target": 1, "weight": 1},
+            {"source": 1, "target": 2, "weight": 1},
+        ],
+    }
+
+{% elif list|length == 6 and list[0] != "uri" %}
+
+    json = {
+        "nodes": [
+            {"name": "{{ list[0] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[1] }}", "group": 1},
+            //{"name":"dbp:race","group":1},
+            {"name": "{{ list[2] }}", "group": 1},
+            {"name": "{{ list[3] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[4] }}", "group": 1},
+        ],
+        "links": [
+            {"source": 0, "target": 1, "weight": 1},
+            {"source": 1, "target": 2, "weight": 1},
+            {"source": 3, "target": 4, "weight": 1},
+            {"source": 4, "target": 2, "weight": 1},
+        ],
+    }
+{% elif list|length == 6 and list[0] == "uri" %}
+    json = {
+        "nodes": [
+            {"name": "{{ list[0] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[1] }}", "group": 1},
+            //{"name":"dbp:race","group":1},
+            {"name": "{{ list[2] }}", "group": 1},
+            {"name": "{{ list[4] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[5] }}", "group": 1},
+        ],
+        "links": [
+            {"source": 0, "target": 1, "weight": 1},
+            {"source": 1, "target": 2, "weight": 1},
+            {"source": 3, "target": 4, "weight": 1},
+            {"source": 0, "target": 3, "weight": 1},
+        ],
+    }
+
+{% elif list|length == 9  and (list[0] == "x" or list[0] == "uri") %}
+    json = {
+        "nodes": [
+            {"name": "{{ list[0] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[1] }}", "group": 1},
+            //{"name":"dbp:race","group":1},
+            {"name": "{{ list[2] }}", "group": 1},
+            {"name": "{{ list[4] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[5] }}", "group": 1},
+            {"name": "{{ list[7] }}", "group": 1},
+            {"name": "{{ list[8] }}", "group": 1},
+        ],
+        "links": [
+            {"source": 0, "target": 1, "weight": 1},
+            {"source": 1, "target": 2, "weight": 1},
+            {"source": 3, "target": 4, "weight": 1},
+            {"source": 0, "target": 3, "weight": 1},
+            {"source": 5, "target": 6, "weight": 1},
+            {"source": 0, "target": 5, "weight": 1},
+        ],
+    }
+    {% elif list|length == 9  and (list[0] != "x" and list[0] != "uri") %}
+    json = {
+        "nodes": [
+            {"name": "{{ list[0] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[1] }}", "group": 1},
+            //{"name":"dbp:race","group":1},
+            {"name": "{{ list[2] }}", "group": 1},
+            {"name": "{{ list[4] }}", "group": 1},
+            //{"name":"dbo:breeder","group":1},
+            {"name": "{{ list[5] }}", "group": 1},
+            {"name": "{{ list[7] }}", "group": 1},
+            {"name": "{{ list[8] }}", "group": 1},
+        ],
+        "links": [
+            {"source": 0, "target": 1, "weight": 1},
+            {"source": 1, "target": 2, "weight": 1},
+            {"source": 3, "target": 4, "weight": 1},
+            {"source": 0, "target": 3, "weight": 1},
+            {"source": 5, "target": 6, "weight": 1},
+            {"source": 0, "target": 5, "weight": 1},
+        ],
+    }
+{% endif %}#}
+
+
+  force
+      .nodes(json.nodes)
+      .links(json.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(json.links)
+    .enter().append("line")
+      .attr("class", "link")
+    .style("stroke-width", function(d) { return Math.sqrt(d.weight); });
+
+  var node = svg.selectAll(".node")
+      .data(json.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+  node.append("circle")
+      .attr("r","5");
+
+  node.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  });
+//});
+
+</script>
+</body>
+</html>

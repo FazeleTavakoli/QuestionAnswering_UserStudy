@@ -1,3 +1,4 @@
+{#{% from "d3_labeled_edges_2.html" import showGraph%}#}
 {% extends "layout.html" %}
 
 {% block title %}
@@ -17,16 +18,24 @@ Question Answering Survey
   </div>
 
  <div style="border:3px; border-style:solid; border-color:#000000; padding: 1em; box-sizing: content-box; width: 350px; height: 250px; margin: 30px;">
- <p style="font-size: 15px;">
+    <p style="font-size: 15px;">
      {% if user.id%3 == 0 %}
           {{ single_question.controlledLanguage }}
       {% elif user.id%3 == 1 %}
           {{ single_question.sparqlQuery }}
       {% elif user.id%3 == 2 %}
          <h4> Knowledge Graph</h4>
-         <img src={{ imageFile}} >
+{#         <input type="text" style="width: 150px" id="knowledge_graph"/>#}
+         <div>
+
+         <p id="knowledge_graph_1"> {% include 'd3_labeled_edges_2.html' %}</p>
+{#             {{ showGraph(nodes_links) }}#}
+{#         <img src={{ imageFile}} >#}
+         </div>
+
+
       {% endif %}
- </p>
+    </p>
  </div>
 
   <div style="position: absolute; right: 100px; top: 150px;">
@@ -46,13 +55,13 @@ Question Answering Survey
   </div>
       <button style="margin-left: 50px; background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; display: inline-block;"
               type="button" onclick="window.location.href='{{ url_for( 'question', key=key ) }}';"> Next Question </button>
-    <button type="button" onclick="window.location.href='{{ url_for('d3_Visualization') }}';"> visualize </button>
-
+{#    <button formmethod="post" type="button" onclick="window.location.href='{{ url_for('d3_Visualization', key = key) }}';"> visualize </button>#}
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
 
 <script>
@@ -87,6 +96,31 @@ Question Answering Survey
             window.location.href = "{{ url_for('skip', key=key) }}?reason=" + reason;
         });
     });
+
+    {#$(function () {
+        var js_list = {{ nodes_links}}
+    });#}
+
+
+    function myFunction(arg1) {
+        this.a = arg1
+    }
+
+    var x = new myFunction(1)
+    {#document.getElementById("knowledge_graph_1").innerHTML = x.a;#}
+{#var js_list = 1;
+    document.getElementById("knowledge_graph_1").innerHTML = js_list
+
+json = {"nodes":[], "links":[]}
+{%for i in range(0, nodes_links[0]|length)%}
+    json["nodes"].append({"name":{{ nodes_links[0][i] }}, "group": 1})
+{% endfor %}#}
+{#{% for i in range(0, my_links|length) %}
+    {% for j in range(0, my_links[j]|length) %}
+        json["links"].append({"source": my_links[i][0], "target": my_links[i][2], "weight": 1})
+    {% endfor %}
+{% endfor %}#}
+
 </script>
 {%- endblock scripts %}
 
