@@ -16,7 +16,7 @@ Base = declarative_base()
 # def load_user(id):
 #     return User.query.get(int(id))
 
-engine = create_engine('sqlite:////Users/fazeletavakoli/PycharmProjects/QA_userStrudy/database/QA2.db')
+engine = create_engine('sqlite:////Users/fazeletavakoli/PycharmProjects/QA_userStudy/database/QA2.db')
 create_tables = True
 
 class User(Base, UserMixin):
@@ -47,19 +47,21 @@ class Question(Base):
     __tablename__ = "questions"
     id = Column(Integer, primary_key=True)
     question = Column(String(128))
-    # answer = Column(String(64))   //I omitted this entry from Question table in DB, for now
+    answer = Column(String(64))
+    verbalized_answer = Column(String(256))
     sparqlQuery = Column(String(300))
     controlledLanguage = Column(String(128))   #sparqltoUser
-    normalizedQuestion = Column(String(256))
+    complexity = Column(Integer)
+
     # answeredQuestions = relationship('AnsweredQuestion', backref='askedQuestion', lazy='dynamic')
 
-    def __init__(self, question, sparqlQuery, controlledLanguage, normalizedQuestion):
+    def __init__(self, question, answer, verbalized_answer, sparqlQuery, controlledLanguage, complexity ):
         self.question = question
-        # self.answer = answer
+        self.answer = answer
+        self.verbalized_answer = verbalized_answer
         self.sparqlQuery = sparqlQuery
         self.controlledLanguage = controlledLanguage
-        self.normalizedQuestion = normalizedQuestion
-
+        self.complexity = complexity
 # class AnsweredQuestion(Base):
 #     __tablename__ = "answeredQuestions"
 #     user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
@@ -85,6 +87,19 @@ class Interaction(Base):
         self.user_answer = user_answer
         self.skipped = skipped
         self.skipped_reason = skipped_reason
+        self.time = time
+
+class Assessment(Base):
+    __tablename__ = "assessments"
+    id = Column(Integer, primary_key= true)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=false)
+    assessment_question_1 = Column(String(16))
+    assessment_question_2 = Column(String(16))
+    time = Column(DateTime)
+    def __init__(self,user_id, assessment_question_1, assessment_question_2, time):
+        self.user_id = user_id
+        self.assessment_question_1 = assessment_question_1
+        self.assessment_question_2 = assessment_question_2
         self.time = time
 
 # db.metadata.clear()

@@ -274,15 +274,19 @@
             );
 
         node.append("circle")
-            .attr("r", 5)
-            .style("fill", function (d, i) {return colors(i);})
+            .attr("r", 12)
+            {#.style("fill", function (d, i) {return colors(i);})#}
+            .style("stroke", "fff")
+            .style("stroke-width", "3px")
+            .style("fill", "#555")
 
         node.append("title")
             .text(function (d) {return d.id;});
 
         node.append("text")
             .attr("dy", -3)
-            .text(function (d) {return d.name+":"+d.label;});
+            {#.text(function (d) {return d.name+":"+d.label;});#}
+            .text(function (d) {return d.name;});
 
         simulation
             .nodes(nodes)

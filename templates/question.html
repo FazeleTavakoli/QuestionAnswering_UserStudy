@@ -13,49 +13,54 @@ Question Answering Survey
 {% block content %}
 {#    class="top-pad"#}
   <div id="question" style="margin-left: 10px">
-      <h3><b>Question</b>: {{ single_question.question }}</h3>
-{#      <p style="font-size: 15px;"><b>Answer</b>:{{ single_question.answer }}</p>#}
+      <h3><b>Question</b>: <span style="font-size:18px;">{{ single_question.question }}</span></h3>
+      <h3><b>Answers</b>: <span style="font-size:18px;">
+      <p id ="answer_1"></p>
+      <p id="answer_2"></p>
+          </span></h3>
+
   </div>
 
- <div style="border:3px; border-style:solid; border-color:#000000; padding: 1em; box-sizing: content-box; width: 350px; height: 250px; margin: 30px;">
+    <fieldset style="border:3px; border-style:solid; border-color:#000000; padding: 1em; box-sizing: content-box; width: 350px;
+ height: 250px; margin: 30px; word-wrap: break-word;">
+    <legend>Interpretation:</legend>
     <p style="font-size: 15px;">
-     {% if user.id%3 == 0 %}
-          {{ single_question.controlledLanguage }}
-      {% elif user.id%3 == 1 %}
-          {{ single_question.sparqlQuery }}
-      {% elif user.id%3 == 2 %}
-         <h4> Knowledge Graph</h4>
-{#         <input type="text" style="width: 150px" id="knowledge_graph"/>#}
-         <div>
-
-         <p id="knowledge_graph_1"> {% include 'd3_labeled_edges_2.html' %}</p>
+        {% if user.id%4 == 0 %}
+            {{ single_question.controlledLanguage }}
+        {% elif user.id%4 == 1 %}
+            {{ single_question.sparqlQuery }}
+        {% elif user.id%4 == 2 %}
+            <div>
+{#             <img src={{ imageFile}} >#}
+{#             <p id="knowledge_graph"> {% include 'd3_labeled_edges_2.html' %}</p>#}
 {#             {{ showGraph(nodes_links) }}#}
-{#         <img src={{ imageFile}} >#}
-         </div>
-
-
+{#             <iframe src="{{ d3_url }}"></iframe>#}
+{#             <iframe scrolling="no" style="border-style: hidden;width: 300px; height: 200px;" src="{{ url_for('d3_visualization', key = key) }}"></iframe>#}
+                <iframe scrolling="no" src="{{ url_for('d3_visualization', key = key) }}" style="border: 0px none; margin-left: -430px; height: 500px; margin-top: -200px; width: 1000px;"></iframe>
+            </div>
+        {% elif user.id%4 == 3 %}
+            {{ single_question.verbalized_answer }}
       {% endif %}
     </p>
- </div>
-
-  <div style="position: absolute; right: 100px; top: 150px;">
+    </fieldset>
+    <div style="position: absolute; right: 100px; top: 200px;">
       <h3> Does the interpretation of the question sound correct to you?</h3>
       <p style="color:black;"><a href = {{ url_for('correct', key=key) }} > yes? please click here</a></p>
       <p style="color:black;"><a href = {{ url_for('wrong', key=key) }} > No? please click here</a></p>
       <h3> You can also skip this question</h3>
       <select id ="skip_reason">
-          <option value="The question doesn't make sense">I don't understand the question</option>
-          <option value="The interpretation doesn't make sense">I don't understand the answer</option>
+          <option value=""></option>
+          <option value="The question doesn't make sense">The question is not comprehensible</option>
+          <option value="The interpretation doesn't make sense">The interpretation is not comprehensible</option>
           <option value="other">other</option>
       </select>
       <input type="text" style="width: 150px" id="skip_reason_other"/>
         <button id="skip_button">Skip</button>
 
-{#      <button id="skip_button" type="button" onclick="window.location.href='{{ url_for( 'skip', key=key, reason = reason ) }}';"> Skip </button>#}
   </div>
-      <button style="margin-left: 50px; background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; display: inline-block;"
-              type="button" onclick="window.location.href='{{ url_for( 'question', key=key ) }}';"> Next Question </button>
-{#    <button formmethod="post" type="button" onclick="window.location.href='{{ url_for('d3_Visualization', key = key) }}';"> visualize </button>#}
+      {#<button style="margin-left: 50px; background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; display: inline-block;"
+              type="button" onclick="window.location.href='{{ url_for( 'question', key=key ) }}';"> Next Question </button>#}
+
 {% endblock %}
 
 {% block scripts %}
@@ -65,13 +70,6 @@ Question Answering Survey
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
 
 <script>
-{#    var e = document.getElementById("skip_reason");#}
-{#    var strUser = e.options[e.selectedIndex].value;#}
-{#    document.getElementById("skip_reason").innerHTML =#}
-{#"The skip_reason is: " + skip_reason;#}
-    click_handler = function () {
-    };
-
     $(function () {
         var $skip_reason_other = $('#skip_reason_other'),
             $skip_reason = $('#skip_reason');
@@ -97,19 +95,40 @@ Question Answering Survey
         });
     });
 
+    $(function answer_modifier() {
+
+      var str = "{{ single_question.answer }}";
+      var res = str.split(", ");
+      var text_1 = "";
+      var text_2 = "";
+      if (res.length > 5) {
+          for (i = 0; i < 5; i++) {
+              text_1 += res[i] + " ";
+          }
+          for (i = 5; i < res.length; i++) {
+              text_2 += res[i] + " ";
+          }
+          document.getElementById("answer_1").innerHTML = text_1;
+          document.getElementById("answer_2").innerHTML = text_2;
+      }
+      else{
+          document.getElementById("answer_1").innerHTML = "{{ single_question.answer }}";
+      }
+
+
+    });
+
+
     {#$(function () {
         var js_list = {{ nodes_links}}
     });#}
-
-
-    function myFunction(arg1) {
+    {#function myFunction(arg1) {
         this.a = arg1
     }
-
-    var x = new myFunction(1)
-    {#document.getElementById("knowledge_graph_1").innerHTML = x.a;#}
+    var x = new myFunction(1)#}
+    {#document.getElementById("knowledge_graph").innerHTML = x.a;#}
 {#var js_list = 1;
-    document.getElementById("knowledge_graph_1").innerHTML = js_list
+    document.getElementById("knowledge_graph").innerHTML = js_list
 
 json = {"nodes":[], "links":[]}
 {%for i in range(0, nodes_links[0]|length)%}

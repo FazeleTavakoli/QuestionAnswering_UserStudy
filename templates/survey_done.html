@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Survey is done!
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Thank you {{ current_user.username }} for your participation</h3>
+    The survey is done.<br/>
+
+{#    <button type="button" onclick="window.location.href='{{ url_for( 'question' , key = 0 ) }}';"> Start Survey </button>#}
+</div> <!-- /container -->
+{{ super() }}
+{% endblock %}

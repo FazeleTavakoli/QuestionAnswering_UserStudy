@@ -8,11 +8,38 @@ Star the survey
 {% block content %}
 <div class="container">
     <h3>Welcome {{ current_user.username }}</h3>
-    This survey is designed to study if the question-answering system could have understood the user's question or not. <br/>
-    Please click the below button to start the survey.
+    <p style="text-align: justify">This survey is designed to study if the question-answering system interprets
+        the user's question (expressed in a natural language) in terms of SPARQL queries for the DBpedia knowledge
+        graph, in a correct way or not.
+    </p>
     <hr/>
-{#    <a href="{{ url_for('survey' , key = 0) }}"></a>#}
+    Below you can see a general schema of this survey.
+    <h3>Step 1</h3>
+    <p style="text-align: justify">To start the survey, first you should look at the part 1. It shows the question in
+        natural language.
+    </p>
+    <h3>Step 2</h3>
+    <p style="text-align: justify"> Then you should look at the part 2, which shows the corresponding answer.
+    </p>
+    <h3>Step 3</h3>
+    <p style="text-align: justify">On the part 3, you will see one of the four different
+        forms of question interpretation, including sparql query, knowledge graph, verbalized answer, or controlled
+        language, on the part 3.
+    </p>
+    <h3>Step 4</h3>
+    <p style="text-align: justify">On the part 4, the system asks you if the question makes sense to you or not.
+        You should consider question, answer, and interpretation, and then complete this step. You can also skip
+        the question. From a drop down list you can choose the skipping reason. In case you choose "other" as the
+        reason, you should also provide your own reason.
+    </p>
+
+    <div style="border:3px; border-style:hidden; border-color:#000000; padding: 1em; box-sizing: content-box; width: 700px;
+ height: 250px; margin: 30px; word-wrap: break-word;">
+        <img src="static/start_pic_edited.png">
+    </div>
     <button type="button" onclick="window.location.href='{{ url_for( 'question' , key = 0 ) }}';"> Start Survey </button>
+
+    <hr/>
 </div> <!-- /container -->
 {{ super() }}
 {% endblock %}

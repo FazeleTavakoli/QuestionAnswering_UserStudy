@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}
+Survey assessment!
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3 style="font-size:14px"> How you assess this survey? please choose from the options below:<br/></h3>
+    <form method="POST" action="survey_assessment">
+        {{ form.hidden_tag() }}
+        {{ form.question_1.label }} {{ form.question_1 }}<br/>
+        {{ form.question_2.label }} {{ form.question_2 }}<br/>
+        <button class="btn btn-primary" type="submit" id="next_button">Next</button>
+    </form>
+    {#<p>The whole structure of the survey was easy to follow</p>
+    <select id ="given_score">
+              {% for score in scores %}
+                <option value="{{score}}" >{{score}}</option>"
+    {% endfor %}
+    </select>#}
+{#<button id="next_button">Next</button>#}
+</div> <!-- /container -->
+{{ super() }}
+{% endblock %}
+
+
+
+
+
+{#{% block scripts %}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://d3js.org/d3.v2.min.js?2.9.3"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+    <script>
+    $(function () {
+        var given_score_1 = '{{ form.question_1.data}}';
+        var given_score_2 = '{{ form.question_2.data }}';
+        $('#next_button').click(function () {
+            if (given_score_1.val() == 'None' || given_score_2.val() == 'None') {
+                alert('Please give a score');
+                return false;
+            }
+            #}{#window.location.href = "{{ url_for('save_assessments') }}";#}{#
+        });
+    });
+    </script>
+{%- endblock scripts %}#}
